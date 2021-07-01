@@ -1,28 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1340
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hook", "hook\hook.vcxproj", "{7CD1808E-D0C3-4500-91CC-C27B017C8644}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
 		Release|x64 = Release|x64
-		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7CD1808E-D0C3-4500-91CC-C27B017C8644}.Debug|x64.ActiveCfg = Debug|x64
 		{7CD1808E-D0C3-4500-91CC-C27B017C8644}.Debug|x64.Build.0 = Debug|x64
-		{7CD1808E-D0C3-4500-91CC-C27B017C8644}.Debug|x86.ActiveCfg = Debug|Win32
-		{7CD1808E-D0C3-4500-91CC-C27B017C8644}.Debug|x86.Build.0 = Debug|Win32
 		{7CD1808E-D0C3-4500-91CC-C27B017C8644}.Release|x64.ActiveCfg = Release|x64
 		{7CD1808E-D0C3-4500-91CC-C27B017C8644}.Release|x64.Build.0 = Release|x64
-		{7CD1808E-D0C3-4500-91CC-C27B017C8644}.Release|x86.ActiveCfg = Release|Win32
-		{7CD1808E-D0C3-4500-91CC-C27B017C8644}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5760FBC4-9ADF-473A-A8C9-A55C1EC05340}
 	EndGlobalSection
 EndGlobal
