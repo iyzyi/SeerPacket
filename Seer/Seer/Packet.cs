@@ -153,7 +153,7 @@ namespace Seer
                             }
                             #endregion
 
-                            Listen.listen(ref RecvPacketData);
+                            //Listen.listen(ref RecvPacketData);
 
                             RecvBufIndex += PacketLen;                              //更新接收封包缓冲区的索引
 
@@ -224,6 +224,29 @@ namespace Seer
                 {                                                   //这种情况下并不需要修改序列号，只解析封包即可
                     plain = cipher;
                     ParsePacket(plain, ref SendPacketData);         //解析封包  
+
+                    #region 登陆前 伪造米米号
+                    // 如果 "伪造米米号" 对应的文本框不为空，
+                    // 则登录前的封包，米米号修改为该文本框中的米米号。
+                    // 这个是用于测试赛尔号的伪造登录。正常游戏则置空即可。
+                    if (!HaveLogin && !String.IsNullOrEmpty(Program.UI.textBox11.Text) && 
+                        !String.IsNullOrEmpty(Program.UI.textBox12.Text) 
+                        && Program.UI.textBox12.Text.Length == 32 && SendPacketData.cmdId == 103)
+                    {
+                        int iSubUserId = Int32.Parse(Program.UI.textBox11.Text);
+                        byte[] subUserId = Misc.Int2ByteArray(iSubUserId);
+                        subUserId.CopyTo(cipher, 9);
+                        subUserId.CopyTo(plain, 9);
+
+                        byte[] doubleMD5Pwd;
+                        doubleMD5Pwd = System.Text.Encoding.UTF8.GetBytes(Program.UI.textBox12.Text);
+                        doubleMD5Pwd.CopyTo(cipher, 17);
+                        doubleMD5Pwd.CopyTo(plain, 17);
+
+                        ParsePacket(plain, ref SendPacketData);
+                    }
+                    #endregion
+
                 }
 
                 res = SendPacket.Send(socket, cipher);              //发送封包

@@ -133,26 +133,32 @@ namespace Seer
             RecvLeaveMapPacket(MapId);
         }
 
-        private static async void RecvLeaveMapPacket(int MapId)
+        //private static async void RecvLeaveMapPacket(int MapId)
+        private static void RecvLeaveMapPacket(int MapId)
         {
-            await Task.Run(() => {
-                while (!Listen.bLeaveMap)
-                {
-                    ;
-                }
-            });
+            //await Task.Run(() => {
+            //    while (!Listen.bLeaveMap)
+            //    {
+            //        ;
+            //    }
+            //});
+
+            //MessageBox.Show("ENTER MAP ing");
+            Thread.Sleep(100);
 
 
             _PacketData PacketData = new _PacketData();
-            string EntryMap = "00 00 00 21 31 00 00 07 D1 25 5F EB 30 00 00 02 D7 00 00 00 00 00 00 00 0A 00 00 00 4C 00 00 01 A4 ";
+            string EntryMap = "00 00 00 21 31 00 00 07 D1 09 C0 B6 F7 00 00 02 55 00 00 00 00 00 00 00 0A 00 00 02 D5 00 00 00 AC ";
             // 包体是4个int，第一个是0，第二个是地图号，第三第四个分别是x，y坐标
             byte[] plain = Misc.HexString2ByteArray(EntryMap);
             Packet.ParsePacket(plain, ref PacketData);
 
             byte[] temp = Misc.Int2ByteArray(0);
             byte[] mapid = Misc.Int2ByteArray(MapId);
-            byte[] x = Misc.Int2ByteArray(490);
-            byte[] y = Misc.Int2ByteArray(280);         // 默认传送坐标为（490，280）
+            //byte[] x = Misc.Int2ByteArray(490);
+            //byte[] y = Misc.Int2ByteArray(280);         // 默认传送坐标为（490，280）
+            byte[] x = Misc.Int2ByteArray(0x2d5);
+            byte[] y = Misc.Int2ByteArray(0xac); 
             byte[] body = new byte[16];
             temp.CopyTo(body, 0);
             mapid.CopyTo(body, 4);
